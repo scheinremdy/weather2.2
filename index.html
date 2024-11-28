@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="weather-container">
+        <h1>Weather App</h1>
+        <form id="weather-form">
+            <input type="text" id="city-input" placeholder="Enter city" required />
+            <button type="submit">Get Weather</button>
+        </form>
+
+        <div id="weather-display" class="hidden">
+            <h2 id="city-name"></h2>
+            <p id="weather-description"></p>
+            <p>Temperature: <span id="temp"></span>°C</p>
+            <p>Humidity: <span id="humidity"></span>%</p>
+            <p>Wind Speed: <span id="wind-speed"></span> m/s</p>
+        </div>
+
+        <div id="error-message" class="hidden">
+            <p>Error: Could not fetch weather data. Please try again.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
