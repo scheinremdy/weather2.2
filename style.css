@@ -1,46 +1,80 @@
-/* Add dynamic weather background styles */
-body.sunny {
-    background: linear-gradient(135deg, #f9d423, #ff4e50);
-}
-
-body.cloudy {
-    background: linear-gradient(135deg, #bdc3c7, #2c3e50);
-}
-
-body.rainy {
-    background: linear-gradient(135deg, #647dee, #7f53ac);
-}
-
-/* Add transition for smoother background changes */
 body {
-    transition: background 0.5s ease-in-out;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    transition: background 1s ease-in-out;
+    overflow: hidden;
 }
 
-/* New styles for clock */
-#clock {
-    margin: 20px 0;
-    font-size: 1.5em;
-    color: #444;
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Button animation */
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input[type="text"] {
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 button {
-    transition: transform 0.2s ease, background-color 0.3s ease;
+    background: #0078D7;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
 }
 
 button:hover {
-    transform: scale(1.1);
-    background-color: #2c387e;
+    background: #005fa3;
+    transform: scale(1.05);
 }
 
-/* Icon animations */
-.weather-icon {
-    font-size: 4em;
-    margin: 10px 0;
-    animation: float 3s ease-in-out infinite;
+#weatherInfo {
+    margin-top: 20px;
+    text-align: left;
+    transition: opacity 0.5s ease;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.icon img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
