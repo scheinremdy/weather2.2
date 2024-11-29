@@ -4,32 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Weather App</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="weather-container">
+    <div class="container">
         <h1>Interactive Weather App</h1>
-        <div id="clock"></div>
-        <form id="weather-form">
-            <input type="text" id="city-input" placeholder="Enter city" required />
+        <form id="weatherForm">
+            <input type="text" id="city" placeholder="Enter city name" required>
             <button type="submit">Get Weather</button>
         </form>
-
-        <div id="weather-display" class="hidden">
-            <div id="weather-icon" class="weather-icon"></div>
-            <h2 id="city-name"></h2>
-            <p id="weather-description"></p>
-            <p>Temperature: <span id="temp"></span>°C</p>
-            <p>Feels Like: <span id="feels-like"></span>°C</p>
-            <p>Humidity: <span id="humidity"></span>%</p>
-            <p>Wind Speed: <span id="wind-speed"></span> m/s</p>
-            <p>Sunrise: <span id="sunrise"></span></p>
-            <p>Sunset: <span id="sunset"></span></p>
+        <div id="weatherInfo" class="hidden">
+            <div class="icon"><img id="weatherIcon" src="" alt="Weather Icon"></div>
+            <p><strong>City:</strong> <span id="cityName"></span></p>
+            <p><strong>Temperature:</strong> <span id="temperature"></span>&#8451;</p>
+            <p><strong>Condition:</strong> <span id="condition"></span></p>
+            <p><strong>Humidity:</strong> <span id="humidity"></span>%</p>
+            <p><strong>Wind Speed:</strong> <span id="windSpeed"></span> m/s</p>
         </div>
-
-        <div id="error-message"></div>
+        <canvas id="effectCanvas"></canvas>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
