@@ -1,75 +1,91 @@
-document.getElementById('weather-form').addEventListener('submit', function (event) {
-    event.preventDefault();
+const weatherForm = document.getElementById("weatherForm");
+const weatherInfo = document.getElementById("weatherInfo");
+const weatherIcon = document.getElementById("weatherIcon");
+const effectCanvas = document.getElementById("effectCanvas");
 
-    const city = document.getElementById('city-input').value;
-    const apiKey = 'your_api_key_here'; // Replace with your OpenWeatherMap API key
+let canvasCtx = effectCanvas.getContext("2d");
+let particlesArray = [];
+let weatherCondition = "";
+
+weatherForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const city = document.getElementById("city").value;
+    const apiKey = "0dc2957f911be0df7a060c2992526cba"; // Replace with your OpenWeather API key
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
-    document.getElementById('error-message').style.display = 'none';
-
     fetch(apiUrl)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('City not found.');
-            }
-            return response.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
-            updateWeather(data);
-            updateBackground(data.weather[0].main);
+            if (data.cod === 200) {
+                document.getElementById("cityName").textContent = data.name;
+                document.getElementById("temperature").textContent = data.main.temp;
+                document.getElementById("condition").textContent =
+                    data.weather[0].description;
+                document.getElementById("humidity").textContent = data.main.humidity;
+                document.getElementById("windSpeed").textContent = data.wind.speed;
+
+                const iconCode = data.weather[0].icon;
+                weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+                weatherCondition = data.weather[0].main.toLowerCase();
+                updateCanvas(weatherCondition);
+
+                weatherInfo.classList.remove("hidden");
+            } else {
+                alert("City not found!");
+            }
         })
-        .catch((error) => {
-            showError('Error: Could not fetch weather data. Please try again.');
-            console.error(error);
-        });
+        .catch(() => alert("Error fetching weather data!"));
 });
 
-function updateWeather(data) {
-    const weatherIconMap = {
-        Clear: '☀️',
-        Clouds: '☁️',
-        Rain: '🌧️',
-        Snow: '❄️',
-        Thunderstorm: '⛈️',
-        Drizzle: '🌦️',
-        Mist: '🌫️',
-    };
-
-    // Display weather details
-    document.getElementById('weather-display').classList.remove('hidden');
-    document.getElementById('city-name').textContent = data.name;
-    document.getElementById('weather-description').textContent = data.weather[0].description;
-    document.getElementById('temp').textContent = data.main.temp.toFixed(1);
-    document.getElementById('feels-like').textContent = data.main.feels_like.toFixed(1);
-    document.getElementById('humidity').textContent = data.main.humidity;
-    document.getElementById('wind-speed').textContent = data.wind.speed.toFixed(1);
-    document.getElementById('sunrise').textContent = formatTime(data.sys.sunrise);
-    document.getElementById('sunset').textContent = formatTime(data.sys.sunset);
-    document.getElementById('weather-icon').textContent = weatherIconMap[data.weather[0].main] || '🌍';
+function updateCanvas(condition) {
+    particlesArray = [];
+    if (condition === "rain") {
+        for (let i = 0; i < 100; i++) {
+            particlesArray.push(new Particle("raindrop"));
+        }
+    } else if (condition === "snow") {
+        for (let i = 0; i < 100; i++) {
+            particlesArray.push(new Particle("snowflake"));
+        }
+    } else {
+        particlesArray = [];
+    }
 }
 
-function formatTime(unixTimestamp) {
-    const date = new Date(unixTimestamp * 1000);
-    return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+class Particle {
+    constructor(type) {
+        this.type = type;
+        this.x = Math.random() * window.innerWidth;
+        this.y = Math.random() * window.innerHeight;
+        this.size = Math.random() * 3 + 1;
+        this.speed = Math.random() * 2 + 1;
+    }
+
+    update() {
+        this.y += this.speed;
+        if (this.y > window.innerHeight) this.y = 0;
+
+        if (this.type === "raindrop") {
+            this.x += Math.random() * 2 - 1;
+        }
+    }
+
+    draw() {
+        canvasCtx.fillStyle = this.type === "raindrop" ? "blue" : "white";
+        canvasCtx.beginPath();
+        canvasCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        canvasCtx.fill();
+    }
 }
 
-function updateBackground(condition) {
-    const body = document.body;
-    body.className = ''; // Reset classes
-    if (condition === 'Clear') body.classList.add('sunny');
-    if (condition === 'Clouds') body.classList.add('cloudy');
-    if (condition === 'Rain' || condition === 'Drizzle' || condition === 'Thunderstorm') body.classList.add('rainy');
+function animateParticles() {
+    canvasCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    particlesArray.forEach((particle) => {
+        particle.update();
+        particle.draw();
+    });
+    requestAnimationFrame(animateParticles);
 }
 
-function showError(message) {
-    const errorElement = document.getElementById('error-message');
-    errorElement.style.display = 'block';
-    errorElement.textContent = message;
-    document.getElementById('weather-display').classList.add('hidden');
-}
-
-function updateClock() {
-    document.getElementById('clock').textContent = new Date().toLocaleTimeString();
-}
-setInterval(updateClock, 1000);
-updateClock();
+animateParticles();
