@@ -1,38 +1,47 @@
-# 🌦️ Interactive Weather App
+# Interaktive Wetter-App
 
-**Interactive Weather App** is a user-friendly and dynamic application designed to provide real-time weather updates for any location worldwide. With its modern interface and reliable data, it’s perfect for users who want quick, accurate weather information at their fingertips.
-
----
-
-## 🌟 Features
-
-- **Real-Time Weather Updates**: Get accurate, up-to-date weather information for any city or location globally.
-- **Dynamic Backgrounds**: Experience stunning background visuals that reflect the current weather conditions.
-- **Temperature in Celsius and Fahrenheit**: Easily switch between Celsius and Fahrenheit to suit your preference.
-- **Weather Icons**: Intuitive icons that visually represent the current weather.
-- **Location-Based Search**: Search for weather details of any location worldwide.
+Die **Interaktive Wetter-App** bietet eine benutzerfreundliche Oberfläche und liefert präzise, aktuelle Wetterinformationen für jeden Ort weltweit. Mit einer modernen Darstellung und zuverlässigen Daten ermöglicht die App eine schnelle und einfache Wetterabfrage – ideal für den Alltag und die Reiseplanung.
 
 ---
 
-## 🌍 Demo
+## Funktionen
 
-Check out the live version here:  
-[Interactive Weather App](https://scheinremdy.github.io/weather2.2/)
-
----
-
-## 🛠️ Technologies Used
-
-- **HTML5**: Semantic markup for structured content.
-- **CSS3**: Modern styling for responsiveness and visual appeal.
-- **JavaScript (ES6)**: Core logic for API integration and user interactions.
-- **OpenWeatherMap API**: Provides real-time weather data for any location.
+- **Echtzeit-Wetterdaten** – Abruf aktueller Wetterinformationen für Städte weltweit.  
+- **Dynamische Hintergründe** – Die visuellen Hintergründe passen sich den aktuellen Wetterbedingungen an.  
+- **Temperaturanzeige in Celsius und Fahrenheit** – Einfache Umschaltung zwischen den beiden Einheiten.  
+- **Intuitive Wetter-Icons** – Klare grafische Darstellung der aktuellen Wetterlage.  
+- **Standortbasierte Suche** – Wetterdaten für beliebige Orte abrufbar.  
 
 ---
 
-## 📦 Installation
+## Live-Demo
 
-1. **Clone the Repository**
+Teste die Anwendung hier:  
+[Interaktive Wetter-App](https://scheinremdy.github.io/weather2.2/)
+
+---
+
+## Technologien  
+
+- **HTML5** – Strukturierte und semantische Webentwicklung.  
+- **CSS3** – Modernes Styling für eine ansprechende Benutzeroberfläche.  
+- **JavaScript (ES6)** – Implementierung von API-Abfragen und Nutzerinteraktionen.  
+- **OpenWeatherMap API** – Liefert Echtzeit-Wetterdaten für verschiedene Orte.  
+
+---
+
+## Herausforderungen  
+
+- **API-Integration** – Sicherstellen, dass Wetterdaten korrekt geladen und verarbeitet werden.  
+- **Dynamische UI-Anpassung** – Echtzeit-Änderung der Hintergründe und Symbole je nach Wetterlage.  
+- **Performance-Optimierung** – Schnelle Ladezeiten trotz regelmäßiger API-Anfragen.  
+- **Fehlermanagement** – Umgang mit fehlerhaften API-Antworten und ungültigen Nutzereingaben.  
+
+---
+
+## Installation  
+
+1. **Repository klonen**  
    ```bash
    git clone https://github.com/scheinremdy/weather2.2.git
    cd weather2.2
